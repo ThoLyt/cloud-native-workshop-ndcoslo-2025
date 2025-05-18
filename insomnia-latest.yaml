@@ -1,0 +1,602 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1709037698358
+  modified: 1709037698358
+collection:
+  - name: Students
+    meta:
+      id: fld_1508fdf77b074dd48537725278ab2275
+      created: 1714463205872
+      modified: 1714463234832
+      sortKey: -1714463205872
+    children:
+      - url: "{{baseUrl}}/identity/login"
+        name: User login
+        meta:
+          id: req_0c66b6ab3fa3479f819f8b80ddca0c94
+          created: 1714404204023
+          modified: 1714463240552
+          isPrivate: false
+          sortKey: -1714463211931
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "nick@dometrain.com",
+            	"password": "Test1234!"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students/"
+        name: Get all students
+        meta:
+          id: req_5c018987e69a4dda9b90dfdaf616b0d2
+          created: 1714427108042
+          modified: 1714463220595
+          isPrivate: false
+          sortKey: -1714463211981
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students/cf89bc8f-0a0e-4430-bcab-40a20316e1ac"
+        name: Get student by id
+        meta:
+          id: req_561de2bcd987479e9bbde688ba97013a
+          created: 1714427297237
+          modified: 1714903039618
+          isPrivate: false
+          sortKey: -1714463211981
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students/nick@dometrain.com"
+        name: Get student by email
+        meta:
+          id: req_b210e19f67a4440aad34af94d545395f
+          created: 1714427807868
+          modified: 1714463216500
+          isPrivate: false
+          sortKey: -1714463211981
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students/"
+        name: Delete student by id
+        meta:
+          id: req_f4f2e3b3e17d4ecbae73198d30729e77
+          created: 1714427819013
+          modified: 1714463252179
+          isPrivate: false
+          sortKey: -1714463211981
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students"
+        name: User register
+        meta:
+          id: req_1ea0461a8a94469aa9c33cf10f8ae525
+          created: 1714427849040
+          modified: 1714463211900
+          isPrivate: false
+          sortKey: -1714463211881
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "nick@dometrain.com",
+            	"password": "Test1234!",
+            	"fullname": "Nick Chapsas"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/students/me"
+        name: Get student by me
+        meta:
+          id: req_567d91c05f1c471296fe5c9d1b5be7e3
+          created: 1714429954001
+          modified: 1714463218119
+          isPrivate: false
+          sortKey: -1714463211981
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Courses
+    meta:
+      id: fld_385ad34157274d908c2e6687e07546d8
+      created: 1714463230876
+      modified: 1714463230876
+      sortKey: -1714463230876
+    children:
+      - url: "{{baseUrl}}/courses"
+        name: Create course
+        meta:
+          id: req_c164ea1936ba4bcb9edd1831b15d07dc
+          created: 1714463387280
+          modified: 1714903076934
+          isPrivate: false
+          sortKey: -1714463389774
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "From Zero to Hero: Unit Testing",
+            	"description": "Learn Unit testing",
+            	"author": "Nick Chapsas"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/courses"
+        name: Get all courses
+        meta:
+          id: req_26de9579b3034bc9be4a3a1d24a0961b
+          created: 1714464535170
+          modified: 1714464728284
+          isPrivate: false
+          sortKey: -1714463389774
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/courses/from-zero-to-hero-unit-testing"
+        name: Get by id or slug
+        meta:
+          id: req_1025216fc8d945a191c11cb1b438ce2a
+          created: 1714464568976
+          modified: 1714658321996
+          isPrivate: false
+          sortKey: -1714463389674
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/courses/3c025915-b7a2-4b21-b166-406812bd8c90"
+        name: Update course
+        meta:
+          id: req_fb3f0baa0a5a4c68b4882b564767d801
+          created: 1714464739500
+          modified: 1714464985437
+          isPrivate: false
+          sortKey: -1714463389674
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "From Zero to Hero: Unit Testing in .NET",
+            	"description": "Learn Unit testing",
+            	"author": "Nick Chapsas"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/courses/3c025915-b7a2-4b21-b166-406812bd8c90"
+        name: Delete by id
+        meta:
+          id: req_5ce460f5cbb84807ac43b69776756884
+          created: 1714464776298
+          modified: 1714465105994
+          isPrivate: false
+          sortKey: -1714463389674
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cart
+    meta:
+      id: fld_1351f195047c41ca96b9986ce5a809e9
+      created: 1714485166990
+      modified: 1714485166990
+      sortKey: -1714485166990
+    children:
+      - url: "{{baseCartUrl}}/cart/me"
+        name: Get my cart
+        meta:
+          id: req_498e4cbfc088467babffd5a38b748140
+          created: 1714485176224
+          modified: 1747601381747
+          isPrivate: false
+          sortKey: -1714479729561.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseCartUrl}}/cart/me/courses/9dc8a467-a1e1-4a41-809e-e35d8f2bfccb"
+        name: Add item in cart
+        meta:
+          id: req_607dc8ef20ba49b0bc87ecd89ae30c69
+          created: 1714486421775
+          modified: 1747601404055
+          isPrivate: false
+          sortKey: -1714474282999
+        method: POST
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseCartUrl}}/cart/me/courses/2c860bb5-2277-41a7-bead-23a35695a3b2"
+        name: Delete item from cart
+        meta:
+          id: req_88ebcf6a86364027a689525206bea609
+          created: 1714486492458
+          modified: 1747601373446
+          isPrivate: false
+          sortKey: -1714481091202.125
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseCartUrl}}/cart/me"
+        name: Clear cart
+        meta:
+          id: req_362b64cc24464882a4858b51e85b92ee
+          created: 1714486558649
+          modified: 1747601377759
+          isPrivate: false
+          sortKey: -1714482452842.75
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Enrollments
+    meta:
+      id: fld_d41c6de6d41040f68c30e4c9e5b78e8e
+      created: 1714491612216
+      modified: 1714491618405
+      sortKey: -1714491612216
+    children:
+      - url: "{{baseUrl}}/enrollments"
+        name: Get enrollments
+        meta:
+          id: req_4d0706f85d09404f8a9b5419f785d11b
+          created: 1714491633596
+          modified: 1714491676792
+          isPrivate: false
+          sortKey: -1714491633596
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/enrollments/6373bc74-6afa-449d-9043-eb6ea8491619"
+        name: Enroll
+        meta:
+          id: req_548fc4a0947b474e9f33640655dd0bfc
+          created: 1714491683470
+          modified: 1714491742037
+          isPrivate: false
+          sortKey: -1714487043219.375
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/enrollments/6373bc74-6afa-449d-9043-eb6ea8491619"
+        name: Unenroll
+        meta:
+          id: req_1abdd09e379e498baabc0b0ef1eb3f92
+          created: 1714491737732
+          modified: 1714491737732
+          isPrivate: false
+          sortKey: -1714484748031.0625
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Orders
+    meta:
+      id: fld_dd137873590449ec887087d3eff9cc39
+      created: 1714744766975
+      modified: 1714744766975
+      sortKey: -1714744766975
+    children:
+      - url: "{{baseUrl}}/orders"
+        name: Create order
+        meta:
+          id: req_775ac3e9767e4903a2ef6d88c43836cc
+          created: 1714744776064
+          modified: 1714759690562
+          isPrivate: false
+          sortKey: -1714744776064
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"courseIds" : [
+            		"9dc8a467-a1e1-4a41-809e-e35d8f2bfccb"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/orders"
+        name: Get all orders
+        meta:
+          id: req_18fe52a7fbca4d8cb6005e14a2d33c57
+          created: 1714744836436
+          modified: 1714744860534
+          isPrivate: false
+          sortKey: -1714744836436
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{baseUrl}}/orders/1aa55e8f-5392-42fe-86d7-44de708f7430"
+        name: Get by id
+        meta:
+          id: req_dadaa3f261054ca2839e987444df5a75
+          created: 1714744891156
+          modified: 1714745367554
+          isPrivate: false
+          sortKey: -1714744806250
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/9.0.0
+        authentication:
+          type: bearer
+          token: "{{authToken}}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1709037721955
+    modified: 1709037721955
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1709037721954
+    modified: 1747601398916
+    isPrivate: false
+  data:
+    baseUrl: http://localhost:5148
+    baseCartUrl: http://localhost:5148
