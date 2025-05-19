@@ -63,6 +63,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     public async Task<ShoppingCart?> GetByIdAsync(Guid studentId)
     {
         var container = _cosmosClient.GetContainer(DatabaseId, ContainerId);
+
         try
         {
             return await container.ReadItemAsync<ShoppingCart>(studentId.ToString(),
@@ -93,7 +94,9 @@ public class ShoppingCartRepository : IShoppingCartRepository
             var response = await container.UpsertItemAsync(cart);
             return response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created;
         }
-        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+
+        catch (CosmosException ex) when(ex.StatusCode is HttpStatusCode.NotFound)
+
         {
             return true;
         }
@@ -102,6 +105,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     public async Task<bool> ClearAsync(Guid studentId)
     {
         var container = _cosmosClient.GetContainer(DatabaseId, ContainerId);
+        
         try
         {
             await container.DeleteItemAsync<ShoppingCart>(studentId.ToString(), new PartitionKey(studentId.ToString()));
