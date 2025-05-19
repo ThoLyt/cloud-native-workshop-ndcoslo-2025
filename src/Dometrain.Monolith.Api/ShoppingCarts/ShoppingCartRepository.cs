@@ -70,7 +70,11 @@ public class ShoppingCartRepository : IShoppingCartRepository
         }
         catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
         {
-            return null;
+            return new ShoppingCart
+            {
+                StudentId = studentId,
+                CourseIds = []
+            };
         }
     }
 

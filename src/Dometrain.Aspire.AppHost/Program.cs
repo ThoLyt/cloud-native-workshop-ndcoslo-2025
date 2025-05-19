@@ -32,10 +32,15 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .AddCosmosDatabase("cartdb");
 //}
 
+    var redis = builder.AddRedis("redis")
+        .WithLifetime(ContainerLifetime.Persistent)
+        .WithRedisInsight();
 
 
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
+    .WithReplicas(5)
     .WithReference(mainDb).WaitFor(mainDb)
+    .WithReference(redis).WaitFor(redis)
     .WithReference(cartDb).WaitFor(cartDb);
 
 var app = builder.Build();
