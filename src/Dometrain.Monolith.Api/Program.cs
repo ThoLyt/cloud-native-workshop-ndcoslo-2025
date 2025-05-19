@@ -61,6 +61,7 @@ builder.Services.Configure<IdentitySettings>(builder.Configuration.GetSection(Id
 builder.Services.AddSingleton<DbInitializer>();
 builder.Services.AddSingleton<IDbConnectionFactory, NpgsqlConnectionFactory>();
 builder.AddNpgsqlDataSource("dometrain");
+builder.AddAzureCosmosClient("cartdb");
 
 builder.Services.AddSingleton<IPasswordHasher<Student>, PasswordHasher<Student>>();
 builder.Services.AddSingleton<IIdentityService, IdentityService>();
@@ -71,8 +72,8 @@ builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<ICourseService, CourseService>();
 builder.Services.AddSingleton<ICourseRepository, CourseRepository>();
 
-builder.Services.AddSingleton<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddSingleton<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddSingleton<IShoppingCartRepository, ShoppingCartRepository>();
 
 builder.Services.AddSingleton<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddSingleton<IEnrollmentService, EnrollmentService>();
