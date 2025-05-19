@@ -1,4 +1,7 @@
 
+using Aspire.Hosting.Azure;
+using Microsoft.Extensions.Hosting;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 
@@ -11,9 +14,25 @@ var mainDb = builder.AddPostgres("main-db", mainDbUsername, mainDbPassword, 5432
     .AddDatabase("dometrain");
 
 
-var cartDb = builder.AddAzureCosmosDB("cosmosdb")
-    //.RunAsPreviewEmulator()
-    .AddCosmosDatabase("cartdb");
+IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
+// if (builder.Environment.IsDevelopment())
+// {
+// #pragma warning disable ASPIRECOSMOSDB001
+//     cartDb = builder.AddAzureCosmosDB("cosmosdb")
+//         .RunAsPreviewEmulator(resourceBuilder =>
+//         {
+//             resourceBuilder.WithDataExplorer().WithLifetime(ContainerLifetime.Persistent);
+//         })
+// #pragma warning restore ASPIRECOSMOSDB001
+//         .AddCosmosDatabase("cartdb");
+// }
+// else
+// {
+    cartDb = builder.AddAzureCosmosDB("cosmosdb")
+        .AddCosmosDatabase("cartdb");
+//}
+
+
 
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
     .WithReference(mainDb).WaitFor(mainDb)

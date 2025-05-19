@@ -11,6 +11,7 @@ using Dometrain.Monolith.Api.Students;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -105,5 +106,6 @@ app.MapOrderEndpoints();
 
 var db = app.Services.GetRequiredService<DbInitializer>();
 await db.InitializeAsync();
+
 
 app.Run();

@@ -60,18 +60,52 @@ public class ShoppingCartRepository : IShoppingCartRepository
         return response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created;
     }
 
-    public Task<ShoppingCart?> GetByIdAsync(Guid studentId)
+    public async Task<ShoppingCart?> GetByIdAsync(Guid studentId)
     {
-        throw new NotImplementedException();
+        var container = _cosmosClient.GetContainer(DatabaseId, ContainerId);
+        try
+        {
+            return await container.ReadItemAsync<ShoppingCart>(studentId.ToString(),
+                new PartitionKey(studentId.ToString()));
+        }
+        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
     }
 
-    public Task<bool> RemoveItemAsync(Guid studentId, Guid courseId)
+    public async Task<bool> RemoveItemAsync(Guid studentId, Guid courseId)
     {
-        throw new NotImplementedException();
+        var container = _cosmosClient.GetContainer(DatabaseId, ContainerId);
+        try
+        {
+            var cart = await GetByIdAsync(studentId);
+            if (cart is null)
+            {
+                return true;
+            }
+
+            cart.CourseIds.Remove(courseId);
+            var response = await container.UpsertItemAsync(cart);
+            return response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created;
+        }
+        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            return true;
+        }
     }
 
-    public Task<bool> ClearAsync(Guid studentId)
+    public async Task<bool> ClearAsync(Guid studentId)
     {
-        throw new NotImplementedException();
+        var container = _cosmosClient.GetContainer(DatabaseId, ContainerId);
+        try
+        {
+            await container.DeleteItemAsync<ShoppingCart>(studentId.ToString(), new PartitionKey(studentId.ToString()));
+            return true;
+        }
+        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            return true;
+        }
     }
 }
