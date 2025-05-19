@@ -36,11 +36,15 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .WithLifetime(ContainerLifetime.Persistent)
         .WithRedisInsight();
 
+    var rabbitMq = builder.AddRabbitMQ("rabbitmq")
+        .WithLifetime(ContainerLifetime.Persistent)
+        .WithManagementPlugin();
 
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
     .WithReplicas(5)
     .WithReference(mainDb).WaitFor(mainDb)
     .WithReference(redis).WaitFor(redis)
+    .WithReference(rabbitMq).WaitFor(rabbitMq)
     .WithReference(cartDb).WaitFor(cartDb);
 
 var app = builder.Build();

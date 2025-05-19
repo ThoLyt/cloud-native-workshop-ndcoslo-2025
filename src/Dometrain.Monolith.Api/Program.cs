@@ -9,6 +9,7 @@ using Dometrain.Monolith.Api.Orders;
 using Dometrain.Monolith.Api.ShoppingCarts;
 using Dometrain.Monolith.Api.Students;
 using FluentValidation;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Cosmos;
@@ -68,6 +69,16 @@ builder.AddNpgsqlDataSource("dometrain");
 builder.AddAzureCosmosClient("cartdb");
 builder.AddRedisClient("redis");
 
+builder.Services.AddMassTransit(s =>
+{
+    s.AddConsumers(typeof(Program).Assembly);
+    s.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(new Uri(config["ConnectionStrings:rabbitmq"]!));
+        cfg.ConfigureEndpoints(context);
+    });
+});
+
 builder.Services.AddSingleton<IPasswordHasher<Student>, PasswordHasher<Student>>();
 builder.Services.AddSingleton<IIdentityService, IdentityService>();
 
@@ -82,7 +93,11 @@ builder.Services.AddSingleton<ICourseRepository>(x =>
         x.GetRequiredService<IConnectionMultiplexer>()));
 
 builder.Services.AddSingleton<IShoppingCartService, ShoppingCartService>();
-builder.Services.AddSingleton<IShoppingCartRepository, ShoppingCartRepository>();
+
+builder.Services.AddSingleton<ShoppingCartRepository>();
+builder.Services.AddSingleton<IShoppingCartRepository>(x =>
+    new CachedShoppingCartRepository(x.GetRequiredService<ShoppingCartRepository>(), x.GetRequiredService<IConnectionMultiplexer>()));
+
 
 builder.Services.AddSingleton<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddSingleton<IEnrollmentService, EnrollmentService>();
