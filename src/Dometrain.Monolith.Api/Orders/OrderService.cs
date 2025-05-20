@@ -1,4 +1,3 @@
-using Dometrain.Monolith.Api.Enrollments;
 using Dometrain.Monolith.Api.Students;
 using MassTransit;
 

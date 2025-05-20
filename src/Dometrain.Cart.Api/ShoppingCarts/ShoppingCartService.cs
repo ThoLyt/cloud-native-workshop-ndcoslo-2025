@@ -1,7 +1,7 @@
-using Dometrain.Monolith.Api.Courses;
-using Dometrain.Monolith.Api.Students;
+using System.Diagnostics.Metrics;
+using Dometrain.Monolith.Api.Sdk;
 
-namespace Dometrain.Monolith.Api.ShoppingCarts;
+namespace Dometrain.Cart.Api.ShoppingCarts;
 
 public interface IShoppingCartService
 {
@@ -17,31 +17,34 @@ public interface IShoppingCartService
 public class ShoppingCartService : IShoppingCartService
 {
     private readonly IShoppingCartRepository _shoppingCartRepository;
-    private readonly IStudentRepository _studentRepository;
-    private readonly ICourseRepository _courseRepository;
+    private readonly IStudentsApiClient _studentsApiClient;
+    private readonly ICoursesApiClient _coursesApiClient;
+    private readonly Counter<long> _itemsAddedCounter;
 
-    public ShoppingCartService(IShoppingCartRepository shoppingCartRepository, IStudentRepository studentRepository, ICourseRepository courseRepository)
+    public ShoppingCartService(IShoppingCartRepository shoppingCartRepository, IStudentsApiClient studentsApiClient, ICoursesApiClient coursesApiClient, IMeterFactory meterFactory)
     {
         _shoppingCartRepository = shoppingCartRepository;
-        _studentRepository = studentRepository;
-        _courseRepository = courseRepository;
+        _studentsApiClient = studentsApiClient;
+        _coursesApiClient = coursesApiClient;
+        _itemsAddedCounter = meterFactory.Create("cart.meter").CreateCounter<long>("cart.items.added");
     }
 
     public async Task<ShoppingCart?> AddCourseAsync(Guid studentId, Guid courseId)
     {
-        var student = await _studentRepository.GetByIdAsync(studentId);
+        var student = await _studentsApiClient.GetAsync(studentId.ToString());
         if (student is null)
         {
             return null;
         }
-
-        var course = await _courseRepository.GetByIdAsync(courseId);
+        
+        var course = await _coursesApiClient.GetAsync(courseId.ToString());
         if (course is null)
         {
             return null;
         }
         
         await _shoppingCartRepository.AddCourseAsync(studentId, courseId);
+        _itemsAddedCounter.Add(1);
         return await GetByIdAsync(studentId);
     }
 
@@ -52,13 +55,13 @@ public class ShoppingCartService : IShoppingCartService
 
     public async Task<ShoppingCart?> RemoveItemAsync(Guid studentId, Guid courseId)
     {
-        var student = await _studentRepository.GetByIdAsync(studentId);
+        var student = await _studentsApiClient.GetAsync(studentId.ToString());
         if (student is null)
         {
             return null;
         }
         
-        var course = await _courseRepository.GetByIdAsync(courseId);
+        var course = await _coursesApiClient.GetAsync(courseId.ToString());
         if (course is null)
         {
             return null;
@@ -70,7 +73,7 @@ public class ShoppingCartService : IShoppingCartService
 
     public async Task<ShoppingCart?> ClearAsync(Guid studentId)
     {
-        var student = await _studentRepository.GetByIdAsync(studentId);
+        var student = await _studentsApiClient.GetAsync(studentId.ToString());
         if (student is null)
         {
             return null;

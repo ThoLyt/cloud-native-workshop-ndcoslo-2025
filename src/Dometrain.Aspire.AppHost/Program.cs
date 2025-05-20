@@ -40,12 +40,19 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .WithLifetime(ContainerLifetime.Persistent)
         .WithManagementPlugin();
 
-builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
+
+var mainApi = builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
     .WithReplicas(1)
     .WithReference(mainDb).WaitFor(mainDb)
     .WithReference(redis).WaitFor(redis)
-    .WithReference(rabbitMq).WaitFor(rabbitMq)
-    .WithReference(cartDb).WaitFor(cartDb);
+    .WithReference(rabbitMq).WaitFor(rabbitMq);
+
+builder.AddProject<Projects.Dometrain_Cart_Api>("cart-api")
+    .WithReference(redis).WaitFor(redis)
+    .WithReference(cartDb).WaitFor(cartDb)
+    .WithReference(mainApi).WaitFor(mainApi);
+    //.WithEnvironment("MainApi__BaseUrl", mainApi.GetEndpoint("http"));
+
 
 var app = builder.Build();
 

@@ -1,8 +1,11 @@
+
+
 using System.Net;
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
-namespace Dometrain.Monolith.Api.ErrorHandling;
+namespace Dometrain.Api.Shared.ErrorHandling;
 
 public class ProblemExceptionHandler : IExceptionHandler
 {

@@ -1,7 +1,6 @@
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace Dometrain.Monolith.Api.ShoppingCarts;
+namespace Dometrain.Cart.Api.ShoppingCarts;
 
 public class ShoppingCart
 {

@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Monolith.Api.Sdk"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Apis.Demo", "src\Dometrain.Apis.Demo\Dometrain.Apis.Demo.csproj", "{2DC823E0-F782-4435-9BC5-7264CD0DCB9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Cart.Api", "src\Dometrain.Cart.Api\Dometrain.Cart.Api.csproj", "{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Api.Shared", "src\Dometrain.Api.Shared\Dometrain.Api.Shared.csproj", "{91A45A23-A4B6-4559-AD10-531B9FE5E559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,8 @@ Global
 		{2BCAD1C6-2853-4995-963E-F18995976885} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{C5442B4F-36DE-4BE0-B1E9-01719ECBF047} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{2DC823E0-F782-4435-9BC5-7264CD0DCB9E} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{91A45A23-A4B6-4559-AD10-531B9FE5E559} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BCD98E15-8F73-4F5A-8F9B-3A1BC752DB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -59,5 +65,13 @@ Global
 		{2DC823E0-F782-4435-9BC5-7264CD0DCB9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DC823E0-F782-4435-9BC5-7264CD0DCB9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DC823E0-F782-4435-9BC5-7264CD0DCB9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

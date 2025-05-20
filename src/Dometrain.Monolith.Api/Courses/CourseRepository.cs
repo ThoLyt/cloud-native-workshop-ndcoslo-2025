@@ -1,7 +1,5 @@
-using System.Drawing.Printing;
 using Dapper;
 using Dometrain.Monolith.Api.Database;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Dometrain.Monolith.Api.Courses;
 
