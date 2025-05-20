@@ -43,16 +43,29 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .WithManagementPlugin();
 
 
+    builder.AddContainer("prometheus", "prom/prometheus")
+        .WithBindMount("../../prometheus", "/etc/prometheus", true)
+        .WithLifetime(ContainerLifetime.Persistent)
+        .WithHttpEndpoint(port: 9090, targetPort: 9090);
+
+    var grafana = builder.AddContainer("grafana", "grafana/grafana")
+        .WithLifetime(ContainerLifetime.Persistent)
+        .WithBindMount("../../grafana/config", "/etc/grafana", isReadOnly: true)
+        .WithBindMount("../../grafana/dashboards", "/var/lib/grafana/dashboards", isReadOnly: true)
+        .WithHttpEndpoint(targetPort: 3000, name: "http");
+
 var mainApi = builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
     .WithReplicas(1)
     .WithReference(mainDb).WaitFor(mainDb)
     .WithReference(redis).WaitFor(redis)
-    .WithReference(rabbitMq).WaitFor(rabbitMq);
+    .WithReference(rabbitMq).WaitFor(rabbitMq)
+    .WithEnvironment("GRAFANA_URL", grafana.GetEndpoint("http"));
 
 builder.AddProject<Projects.Dometrain_Cart_Api>("cart-api")
     .WithReference(redis).WaitFor(redis)
     .WithReference(cartDb).WaitFor(cartDb)
-    .WithReference(mainApi).WaitFor(mainApi);
+    .WithReference(mainApi).WaitFor(mainApi)
+    .WithEnvironment("GRAFANA_URL", grafana.GetEndpoint("http"));
     //.WithEnvironment("MainApi__BaseUrl", mainApi.GetEndpoint("http"));
 
 

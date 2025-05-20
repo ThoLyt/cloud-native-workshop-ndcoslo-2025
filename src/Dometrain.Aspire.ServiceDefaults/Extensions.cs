@@ -94,6 +94,8 @@ public static class Extensions
         //       .UseAzureMonitor();
         //}
 
+        builder.Services.AddOpenTelemetry().WithMetrics(x => x.AddPrometheusExporter());
+
         return builder;
     }
 
@@ -121,6 +123,8 @@ public static class Extensions
                 Predicate = r => r.Tags.Contains("live")
             });
         }
+
+        app.MapPrometheusScrapingEndpoint();
 
         return app;
     }
