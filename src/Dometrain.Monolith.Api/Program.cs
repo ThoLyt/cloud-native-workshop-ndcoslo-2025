@@ -130,5 +130,4 @@ app.MapOrderEndpoints();
 var db = app.Services.GetRequiredService<DbInitializer>();
 await db.InitializeAsync();
 
-
 app.Run();
