@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Cart.Api", "src\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Api.Shared", "src\Dometrain.Api.Shared\Dometrain.Api.Shared.csproj", "{91A45A23-A4B6-4559-AD10-531B9FE5E559}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dometrain.Cart.Processor", "src\Dometrain.Cart.Processor\Dometrain.Cart.Processor.csproj", "{B7716CCC-9B07-4C31-A005-673434FF77AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,7 @@ Global
 		{2DC823E0-F782-4435-9BC5-7264CD0DCB9E} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{09A32BE5-7FAB-47EB-AD6F-9A7FC0B467D3} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 		{91A45A23-A4B6-4559-AD10-531B9FE5E559} = {EA020C9E-BECD-40C1-98B3-48070D728500}
+		{B7716CCC-9B07-4C31-A005-673434FF77AD} = {EA020C9E-BECD-40C1-98B3-48070D728500}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BCD98E15-8F73-4F5A-8F9B-3A1BC752DB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -73,5 +76,9 @@ Global
 		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A45A23-A4B6-4559-AD10-531B9FE5E559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7716CCC-9B07-4C31-A005-673434FF77AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7716CCC-9B07-4C31-A005-673434FF77AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7716CCC-9B07-4C31-A005-673434FF77AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7716CCC-9B07-4C31-A005-673434FF77AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
