@@ -70,7 +70,7 @@ public class CachedCourseRepository : ICourseRepository
 
     public Task<IEnumerable<Course>> GetAllAsync(string nameFilter, int pageNumber, int pageSize)
     {
-        throw new NotImplementedException();
+        return _courseRepository.GetAllAsync(nameFilter, pageNumber, pageSize);
     }
 
     public async Task<Course?> UpdateAsync(Course course)
