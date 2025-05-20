@@ -153,7 +153,7 @@ public class CachedShoppingCartRepository : IShoppingCartRepository
         return await _shoppingCartRepository.RemoveItemAsync(studentId, courseId);
     }
 
-    public async Task<bool> ClearAsync(Guid studentId)
+    public async Task<bool>  ClearAsync(Guid studentId)
     {
         return await _shoppingCartRepository.ClearAsync(studentId);
     }

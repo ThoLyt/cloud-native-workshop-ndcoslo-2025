@@ -60,6 +60,9 @@ var mainApi = builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api
     .WithReference(rabbitMq).WaitFor(rabbitMq)
     .WithEnvironment("GRAFANA_URL", grafana.GetEndpoint("http"));
 
+builder.AddProject<Projects.Dometrain_Cart_Processor>("dometrain-cart-processor")
+    .WithReference(cartDb).WaitFor(cartDb);
+
 builder.AddProject<Projects.Dometrain_Cart_Api>("cart-api")
     .WithReference(redis).WaitFor(redis)
     .WithReference(cartDb).WaitFor(cartDb)
