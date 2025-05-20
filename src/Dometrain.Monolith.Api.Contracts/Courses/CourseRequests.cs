@@ -1,4 +1,4 @@
-namespace Dometrain.Monolith.Api.Courses;
+namespace Dometrain.Monolith.Api.Contracts.Courses;
 
 public record CreateCourseRequest(string Name, string Description, string Author);
 
