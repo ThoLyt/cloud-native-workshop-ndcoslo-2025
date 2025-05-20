@@ -9,16 +9,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Microsoft.Azure.Cosmos" Version="9.2.1" />
-        <PackageReference Include="Aspire.Npgsql" Version="9.2.1" />
-        <PackageReference Include="Aspire.StackExchange.Redis" Version="9.2.1" />
+        <PackageReference Include="Aspire.Microsoft.Azure.Cosmos" Version="9.3.0" />
+        <PackageReference Include="Aspire.Npgsql" Version="9.3.0" />
+        <PackageReference Include="Aspire.StackExchange.Redis" Version="9.3.0" />
         <PackageReference Include="Dapper" Version="2.1.66" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.9.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.10.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -28,7 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Dometrain.Monolith.Api.Contracts\Dometrain.Monolith.Api.Contracts.csproj" />
       <ProjectReference Include="..\Dometrain.Api.Shared\Dometrain.Api.Shared.csproj" />
       <ProjectReference Include="..\Dometrain.Aspire.ServiceDefaults\Dometrain.Aspire.ServiceDefaults.csproj" />
       <ProjectReference Include="..\Dometrain.Monolith.Api.Contracts\Dometrain.Monolith.Api.Contracts.csproj" />
