@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.AddAzureCosmosClient("cartdb");
+builder.AddRedisClient("redis");
 
 builder.Services.AddHostedService<ChangeFeedProcessorService>();
 
