@@ -1,6 +1,7 @@
 using Dometrain.Cart.Api.ShoppingCarts;
 using Microsoft.Azure.Cosmos;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace Dometrain.Cart.Processor;
 
@@ -9,14 +10,16 @@ public class ChangeFeedProcessorService : BackgroundService
     private const string DatabaseId = "cartdb";
     private const string SourceContainerId = "carts";
     private const string LeaseContainerId = "carts-leases";
+    private readonly IConnectionMultiplexer _connectionMultiplexer;
     
     private readonly CosmosClient _cosmosClient;
     private readonly ILogger<ChangeFeedProcessorService> _logger;
 
-    public ChangeFeedProcessorService(CosmosClient cosmosClient, ILogger<ChangeFeedProcessorService> logger)
+    public ChangeFeedProcessorService(CosmosClient cosmosClient, ILogger<ChangeFeedProcessorService> logger, IConnectionMultiplexer connectionMultiplexer)
     {
         _cosmosClient = cosmosClient;
         _logger = logger;
+        _connectionMultiplexer = connectionMultiplexer;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -39,7 +42,7 @@ public class ChangeFeedProcessorService : BackgroundService
         CancellationToken cancellationToken)
     {
         _logger.LogInformation("Change Feed request consumed {RequestCharge} RU.", context.Headers.RequestCharge);
-
+        var db = _connectionMultiplexer.GetDatabase(); 
         
         foreach (ShoppingCart item in changes)
         {
