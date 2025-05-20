@@ -41,7 +41,7 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .WithManagementPlugin();
 
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
-    .WithReplicas(5)
+    .WithReplicas(1)
     .WithReference(mainDb).WaitFor(mainDb)
     .WithReference(redis).WaitFor(redis)
     .WithReference(rabbitMq).WaitFor(rabbitMq)
