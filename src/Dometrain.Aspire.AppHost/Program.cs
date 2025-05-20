@@ -40,7 +40,6 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
         .WithLifetime(ContainerLifetime.Persistent)
         .WithManagementPlugin();
 
-
     builder.AddContainer("prometheus", "prom/prometheus")
         .WithBindMount("../../prometheus", "/etc/prometheus", true)
         .WithLifetime(ContainerLifetime.Persistent)
