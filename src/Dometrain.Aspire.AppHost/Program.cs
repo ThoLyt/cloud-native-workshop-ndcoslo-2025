@@ -9,6 +9,7 @@ var mainDbUsername = builder.AddParameter("postgres-username");
 var mainDbPassword = builder.AddParameter("postgres-password");
 
 var mainDb = builder.AddPostgres("main-db", mainDbUsername, mainDbPassword, 5432)
+    .WithImage("postgres:latest")
     .WithDataVolume()
     .WithLifetime(ContainerLifetime.Persistent)
     .AddDatabase("dometrain");
@@ -33,15 +34,16 @@ IResourceBuilder<AzureCosmosDBDatabaseResource> cartDb;
 //}
 
     var redis = builder.AddRedis("redis")
+        .WithImage("redis:latest")
         .WithLifetime(ContainerLifetime.Persistent)
-        .WithRedisInsight();
+        .WithRedisInsight(containerName: "redis-insight");
 
     var rabbitMq = builder.AddRabbitMQ("rabbitmq")
         .WithLifetime(ContainerLifetime.Persistent)
         .WithManagementPlugin();
 
 builder.AddProject<Projects.Dometrain_Monolith_Api>("dometrain-api")
-    .WithReplicas(5)
+    .WithReplicas(1)
     .WithReference(mainDb).WaitFor(mainDb)
     .WithReference(redis).WaitFor(redis)
     .WithReference(rabbitMq).WaitFor(rabbitMq)
